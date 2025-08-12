@@ -4,7 +4,6 @@ from balloonberg import config
 import numpy as np
 
 def load_portfolio_data() -> pd.DataFrame:
-    """Loads the portfolio data from the path specified in the config."""
     try:
         df = pd.read_csv(config.PORTFOLIO_DATA_PATH)
         print(f"Successfully loaded data from {config.PORTFOLIO_DATA_PATH}")
@@ -14,9 +13,7 @@ def load_portfolio_data() -> pd.DataFrame:
         return pd.DataFrame()
 
 def aggregate_by_industry(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Aggregates stock data by industry, calculating the mean for numeric features.
-    """
+
     # Select only numeric columns for aggregation
     numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
     

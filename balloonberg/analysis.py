@@ -6,9 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from balloonberg import config
 
 def perform_clustering(industry_df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Performs K-Means clustering on the aggregated industry data.
-    """
+    
     if "Industry" not in industry_df.columns:
         raise ValueError("Input DataFrame must contain an 'Industry' column.")
 
@@ -32,9 +30,7 @@ def perform_clustering(industry_df: pd.DataFrame) -> pd.DataFrame:
     return df_cluster
 
 def generate_cluster_signals(clustered_df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Analyzes cluster characteristics and generates Long/Short/Neutral signals.
-    """
+
     if "Cluster" not in clustered_df.columns:
         raise ValueError("Input DataFrame must contain a 'Cluster' column.")
 

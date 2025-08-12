@@ -12,7 +12,6 @@ from balloonberg.data import load_portfolio_data, aggregate_by_industry
 from balloonberg.analysis import perform_clustering, generate_cluster_signals
 
 def run_pipeline() -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Runs the full industry analysis pipeline and returns the final DataFrames."""
     # 1. Load data
     stock_df = load_portfolio_data()
     if stock_df.empty:

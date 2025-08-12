@@ -5,13 +5,12 @@ import plotly.express as px
 import sys
 from pathlib import Path
 
-# Add the project root to the Python path to enable module imports
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 from balloonberg.pipeline import run_pipeline
 
-# --- Page Configuration ---
+# Page Configuration
 st.set_page_config(
     page_title="Industry Signal Generator",
     page_icon="🏭",
@@ -19,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Bloomberg-style CSS ---
+# Bloomberg-style CSS
 def apply_bloomberg_style():
     st.markdown("""
     <style>
@@ -67,11 +66,11 @@ def apply_bloomberg_style():
 
 apply_bloomberg_style()
 
-# --- Header ---
+# Header
 st.title("Industry Signal Generator")
 st.markdown("Utilizing K-Means clustering on fundamental and technical data to identify industry-level trade signals.")
 
-# --- Data Pipeline ---
+# Data Pipeline
 @st.cache_data
 def get_data():
     """Runs the analysis pipeline and caches the results."""
@@ -83,10 +82,10 @@ industry_signals_df, stock_signals_df = get_data()
 if industry_signals_df.empty:
     st.error("The analysis pipeline failed to produce results. Please check the console for errors.")
 else:
-    # --- UI Tabs ---
+    # UI Tabs
     tab1, tab2 = st.tabs(["Industry & Stock Signals", "Cluster Analysis"])
 
-    # --- Industry Signals Tab ---
+    # Industry Signals Tab
     with tab1:
         st.header("Industry Signal Overview")
         
@@ -139,7 +138,7 @@ else:
         )
 
 
-    # --- Cluster Analysis Tab ---
+    # Cluster Analysis Tab
     with tab2:
         st.header("Industry Cluster Visualization")
         st.markdown("This plot shows how industries are clustered based on their financial profiles. Hover over a point to see the industry name.")
@@ -166,7 +165,7 @@ else:
         )
         st.plotly_chart(fig, use_container_width=True)
 
-# --- Footer ---
+# Footer
 st.markdown(
     "<footer style='margin-top:20px;padding:10px;border-top:1px solid #2A3535;font-size:12px;color:#AAAAAA;text-align:center;'>"
     "Powered by a K-Means Clustering Model | August 2025"
